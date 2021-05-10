@@ -31,6 +31,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/pwa',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -44,5 +45,12 @@ export default {
 
   server: {
     port: 8888,
+  },
+
+  pwa: {
+    manifest: {
+      name: 'greencoin',
+      lang: 'en',
+    },
   },
 }

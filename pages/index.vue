@@ -159,9 +159,11 @@ export default {
                       resultContainer.append(
                         $('<p>').text('Value: ' + line.value)
                       )
-                      resultContainer.append(
-                        $('<p>').text('Date: ' + line.date)
-                      )
+                      if (line.date) {
+                        resultContainer.append(
+                          $('<p>').text('Date: ' + line.date)
+                        )
+                      }
                     }
                   })
                   Promise.all(results).then(function (values) {
@@ -170,6 +172,11 @@ export default {
                       resultContainer.append($('<b>').text('Is deleted'))
                     } else {
                       resultContainer.append($('<b>').text('Is open'))
+                      if (!coin) {
+                        coin = line
+                        $('#btn-submit').prop('disabled', false).text('Delete')
+                        $('[for="value"]').text('Password')
+                      }
                     }
                   })
                 }

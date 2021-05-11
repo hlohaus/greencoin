@@ -20,7 +20,7 @@
             class="form-control"
             name="value"
             data-type="money"
-            type="text"
+            type="number"
             pattern="[0-9.]+"
             required
           />

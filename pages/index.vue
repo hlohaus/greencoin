@@ -28,7 +28,7 @@
       <div class="links">
         <NuxtLink to="/create" class="button--grey"> Create </NuxtLink>
         <a
-          href="https://github.com/hlohaus/greencoin.js"
+          href="https://github.com/hlohaus/greencoin"
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"
@@ -119,7 +119,7 @@ export default {
         $('#coins-form .has-error').removeClass('has-error')
         $('#coins-form .help-block').remove()
 
-        $('#btn-submit').text('Loading...')
+        $('#btn-submit').prop('disabled', true).text('Loading...')
         const pin = $('#value').val()
         ajaxSettings.method = 'GET'
         $.ajax(ajaxSettings)
@@ -181,7 +181,7 @@ export default {
 
       function reset() {
         $('[for="value"]').text('Pin')
-        $('#btn-submit').text('Submit')
+        $('#btn-submit').prop('disabled', false).text('Submit')
         $('#value').val('')
         coin = null
       }
@@ -210,11 +210,12 @@ export default {
       }
 
       $('#coins-form').submit(function (event) {
+        event.preventDefault()
         if (coin) {
           deleteCoin()
+          return false
         }
         postForm()
-        event.preventDefault()
         return false
       })
     })

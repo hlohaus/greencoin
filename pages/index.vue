@@ -165,6 +165,7 @@ export default {
                     resultContainer.append(
                       $('<p>').append($('<b>').text('Is deleted'))
                     )
+                    show(values.shift())
                     reset()
                   } else {
                     resultContainer.append(
@@ -172,14 +173,7 @@ export default {
                     )
                     if (!coin) {
                       coin = values.shift()
-                      resultContainer.append(
-                        $('<p>').text('Value: ' + coin.value)
-                      )
-                      if (coin.date) {
-                        resultContainer.append(
-                          $('<p>').text('Date: ' + coin.date)
-                        )
-                      }
+                      show(coin)
                       $('#btn-submit').prop('disabled', false).text('Delete')
                       $('[for="value"]').text('Password')
                     }
@@ -189,6 +183,13 @@ export default {
             })
           })
           .fail(onFail)
+      }
+
+      function show(coin) {
+        resultContainer.append($('<p>').text('Value: ' + coin.value))
+        if (coin.date) {
+          resultContainer.append($('<p>').text('Date: ' + coin.date))
+        }
       }
 
       function reset() {
@@ -210,7 +211,9 @@ export default {
               ajaxSettings.method = 'POST'
               $.ajax(ajaxSettings)
                 .done(function () {
-                  resultContainer.replaceWith($('<p>').text('Deleted!'))
+                  resultContainer.replaceWith(
+                    $('<p>').append($('<b>').text('Deleted'))
+                  )
                   reset()
                 })
                 .fail(onFail)
@@ -218,6 +221,9 @@ export default {
           })
           .catch((error) => {
             console.log(error)
+            resultContainer.replaceWith(
+              $('<p>').append($('<b>').text('Failed!'))
+            )
             reset()
           })
       }

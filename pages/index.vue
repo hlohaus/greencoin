@@ -134,56 +134,56 @@ export default {
                   })
                   .catch((error) => console.log(error))
               )
-              Promise.all(results).then(function (values) {
-                const results = []
-                values = values.filter((line) => line)
-                if (!values.length) {
-                  $('#result').replaceWith('<b>Not found</b>')
-                  reset()
-                } else {
-                  values.forEach(function (line) {
-                    if (line.delete) {
-                      results.push(
-                        password
-                          .decrypt(
-                            line.password,
-                            line.delete,
-                            process.env.PIN_PASSWORD
-                          )
-                          .then(function () {
-                            return true
-                          })
-                          .catch((error) => console.log(error))
-                      )
-                    }
-                  })
-                  Promise.all(results).then(function (values) {
-                    values = values.filter((line) => line)
-                    if (values.length) {
-                      resultContainer.append(
-                        $('<p>').append($('<b>').text('Is deleted'))
-                      )
-                    } else {
-                      resultContainer.append(
-                        $('<b>').append($('<b>').text('Is open'))
-                      )
-                      if (!coin) {
-                        coin = line
-                        resultContainer.append(
-                          $('<p>').text('Value: ' + coin.value)
+            })
+            Promise.all(results).then(function (values) {
+              const results = []
+              values = values.filter((line) => line)
+              if (values.length < 1) {
+                $('#result').replaceWith('<b>Not found</b>')
+                reset()
+              } else {
+                values.forEach(function (line) {
+                  if (line.delete) {
+                    results.push(
+                      password
+                        .decrypt(
+                          line.password,
+                          line.delete,
+                          process.env.PIN_PASSWORD
                         )
-                        if (line.date) {
-                          resultContainer.append(
-                            $('<p>').text('Date: ' + coin.date)
-                          )
-                        }
-                        $('#btn-submit').prop('disabled', false).text('Delete')
-                        $('[for="value"]').text('Password')
+                        .then(function () {
+                          return true
+                        })
+                        .catch((error) => console.log(error))
+                    )
+                  }
+                })
+                Promise.all(results).then(function (values) {
+                  values = values.filter((line) => line)
+                  if (values.length) {
+                    resultContainer.append(
+                      $('<p>').append($('<b>').text('Is deleted'))
+                    )
+                  } else {
+                    resultContainer.append(
+                      $('<p>').append($('<b>').text('Is open'))
+                    )
+                    if (!coin) {
+                      coin = values[0]
+                      resultContainer.append(
+                        $('<p>').text('Value: ' + coin.value)
+                      )
+                      if (coin.date) {
+                        resultContainer.append(
+                          $('<p>').text('Date: ' + coin.date)
+                        )
                       }
+                      $('#btn-submit').prop('disabled', false).text('Delete')
+                      $('[for="value"]').text('Password')
                     }
-                  })
-                }
-              })
+                  }
+                })
+              }
             })
           })
           .fail(onFail)

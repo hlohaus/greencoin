@@ -52,7 +52,7 @@
         >
           Submit
         </button>
-        <NuxtLink to="/" class="button--grey back-button"> Back </NuxtLink>
+        <NuxtLink to="/" class="button--grey back-button"> Back</NuxtLink>
       </form>
     </div>
   </div>
@@ -183,19 +183,25 @@ export default {
         Promise.all(p).then(function (hashes) {
           ajaxSettings.method = 'GET'
           $.ajax(ajaxSettings).done(function (response) {
-            response = response
-              .map(function (line) {
-                return line.pin === hashes[1]
-              })
-              .filter((line) => line)
-            if (response.length) {
-              $('#result').replaceWith(
-                $('<div class="alert alert-light">').text('Pin already exits')
-              )
-              reset()
-            } else {
-              create(formObj, hashes)
-            }
+            response = response.map(function (line) {
+              return password
+                .decrypt(line.pin, value, process.env.PIN_ITERATIONS)
+                .then(function () {
+                  return line
+                })
+                .catch((error) => console.log(error))
+            })
+            Promise.all(response).then(function (response) {
+              response = response.filter((line) => line)
+              if (response.length) {
+                $('#result').replaceWith(
+                  $('<div class="alert alert-light">').text('Pin already exits')
+                )
+                reset()
+              } else {
+                create(formObj, hashes)
+              }
+            })
           })
         })
       }

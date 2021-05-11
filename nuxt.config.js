@@ -17,7 +17,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['jquery-datetimepicker'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -32,6 +32,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     '@nuxtjs/pwa',
+    '@nuxt/typescript-build',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -52,5 +53,12 @@ export default {
       name: 'greencoin',
       lang: 'en',
     },
+  },
+
+  env: {
+    REST_API_CODE: '6098715be3b6e02545eda61d',
+    REST_API_URL: 'https://greencoin-bcc1.restdb.io/rest/coins',
+    PIN_ITERATIONS: 10000,
+    PASSWORD_ITERATIONS: 10000,
   },
 }

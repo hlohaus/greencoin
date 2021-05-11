@@ -22,21 +22,24 @@
     }
   },
   "dependencies": {
-    "bcrypt": "^5.0.1",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.9.1",
     "jquery": "^3.6.0",
-    "nuxt": "^2.15.3"
+    "jquery-datetimepicker": "^2.5.21",
+    "jquery-serializejson": "^3.2.1",
+    "nuxt": "^2.15.3",
+    "nuxt-fontawesome": "^0.4.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
+    "@nuxt/types": "^2.15.5",
+    "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config": "^6.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/stylelint-module": "^4.0.0",
-    "@nuxtjs/svg": "^0.1.12",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",

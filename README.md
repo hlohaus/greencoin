@@ -1,5 +1,7 @@
 # greencoin
 
+![greencoin](static/icon.svg?raw=true "greencoin")
+
 ## Build Setup
 
 ```bash

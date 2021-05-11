@@ -1,0 +1,14 @@
+[
+	{
+		"relation":[
+			"delegate_permission/common.handle_all_urls"
+		],
+		"target":{
+			"namespace":"android_app",
+			"package_name":"eu.lohaus.greencoin.twa",
+			"sha256_cert_fingerprints":[
+				"20:A6:0E:FB:F6:C2:BB:5B:3D:A7:C5:15:11:E8:B3:2D:01:49:64:CC:87:6F:37:B8:12:AF:9D:B6:C6:EF:6F:52"
+			]
+		}
+	}
+]

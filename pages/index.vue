@@ -155,25 +155,28 @@ export default {
                           })
                           .catch((error) => console.log(error))
                       )
-                    } else if (line.value) {
-                      resultContainer.append(
-                        $('<p>').text('Value: ' + line.value)
-                      )
-                      if (line.date) {
-                        resultContainer.append(
-                          $('<p>').text('Date: ' + line.date)
-                        )
-                      }
                     }
                   })
                   Promise.all(results).then(function (values) {
                     values = values.filter((line) => line)
                     if (values.length) {
-                      resultContainer.append($('<b>').text('Is deleted'))
+                      resultContainer.append(
+                        $('<p>').append($('<b>').text('Is deleted'))
+                      )
                     } else {
-                      resultContainer.append($('<b>').text('Is open'))
+                      resultContainer.append(
+                        $('<b>').append($('<b>').text('Is open'))
+                      )
                       if (!coin) {
                         coin = line
+                        resultContainer.append(
+                          $('<p>').text('Value: ' + coin.value)
+                        )
+                        if (line.date) {
+                          resultContainer.append(
+                            $('<p>').text('Date: ' + coin.date)
+                          )
+                        }
                         $('#btn-submit').prop('disabled', false).text('Delete')
                         $('[for="value"]').text('Password')
                       }

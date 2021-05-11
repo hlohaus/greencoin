@@ -4,7 +4,7 @@
       <Logo />
       <h1 class="title">Create a coin</h1>
       <div id="result"></div>
-      <form id="coins-form" role="form" type="POST">
+      <form id="coins-form" role="form" method="POST">
         <div class="form-group">
           <label>Date: (not required)</label
           ><input
@@ -90,8 +90,8 @@ export default {
       const password = new Password()
 
       $.datetimepicker.setLocale('en')
-      $('input[data-type=date]')
-        .datetimepicker({ timepicker: false, format: 'Y/m/d' })
+      $('input[data-type=datetime]')
+        .datetimepicker({ format: 'Y/m/d H:i:s' })
         .attr('type', 'text')
 
       const apikey = process.env.REST_API_CODE

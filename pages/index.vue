@@ -4,7 +4,7 @@
       <Logo />
       <h1 class="title">greencoin</h1>
       <div id="result"></div>
-      <form id="coins-form" role="form" type="POST">
+      <form id="coins-form" role="form" method="POST">
         <div class="form-group">
           <label for="value">Pin: </label
           ><input
@@ -104,7 +104,7 @@ export default {
           // eslint-disable-next-line prefer-const
           msg =
             ajaxSettings.headers['x-apikey'] &&
-            ajaxSettings.headers['x-apapikeyikey'].length < 24
+            ajaxSettings.headers['x-apikey'].length < 24
               ? 'Missing API-key'
               : 'Server Error'
           alert(msg)

@@ -118,6 +118,7 @@ export default {
         // clear errors
         $('#coins-form .has-error').removeClass('has-error')
         $('#coins-form .help-block').remove()
+        $('#result').empty()
 
         $('#btn-submit').prop('disabled', true).text('Loading...')
         const pin = $('#value').val()
@@ -149,7 +150,7 @@ export default {
                         .decrypt(
                           line.password,
                           line.delete,
-                          process.env.PIN_PASSWORD
+                          process.env.PASSWORD_ITERATIONS
                         )
                         .then(function () {
                           return true
@@ -158,18 +159,19 @@ export default {
                     )
                   }
                 })
-                Promise.all(results).then(function (values) {
-                  values = values.filter((line) => line)
-                  if (values.length) {
+                Promise.all(results).then(function (deletes) {
+                  deletes = deletes.filter((line) => line)
+                  if (deletes.length) {
                     resultContainer.append(
                       $('<p>').append($('<b>').text('Is deleted'))
                     )
+                    reset()
                   } else {
                     resultContainer.append(
                       $('<p>').append($('<b>').text('Is open'))
                     )
                     if (!coin) {
-                      coin = values[0]
+                      coin = values.shift()
                       resultContainer.append(
                         $('<p>').text('Value: ' + coin.value)
                       )
@@ -202,6 +204,7 @@ export default {
           .decrypt(coin.password, value, process.env.PASSWORD_ITERATIONS)
           .then(function (result) {
             if (result) {
+              delete coin._id
               coin.delete = value
               ajaxSettings.data = JSON.stringify(coin)
               ajaxSettings.method = 'POST'

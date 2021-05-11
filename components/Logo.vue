@@ -1,5 +1,5 @@
 <template>
-  <img :src="src" />
+  <img :src="src" class="logo" width="120px" />
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style>
-.NuxtLogo {
+.logo {
   animation: 1s appear;
   margin: auto;
 }

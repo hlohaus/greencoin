@@ -28,7 +28,7 @@
       <div class="links">
         <NuxtLink to="/create" class="button--grey"> Create </NuxtLink>
         <a
-          href="https://github.com/hlohaus/greencoin.js"
+          href="https://github.com/hlohaus/greencoin"
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"

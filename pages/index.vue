@@ -140,7 +140,7 @@ export default {
               const results = []
               values = values.filter((line) => line)
               if (values.length < 1) {
-                $('#result').clear().append('<b>Not found</b>')
+                $('#result').empty().append('<b>Not found</b>')
                 reset()
               } else {
                 values.forEach(function (line) {
@@ -212,7 +212,7 @@ export default {
               $.ajax(ajaxSettings)
                 .done(function () {
                   resultContainer
-                    .clear()
+                    .empty()
                     .append($('<p>').append($('<b>').text('Deleted')))
                   reset()
                 })
@@ -222,7 +222,7 @@ export default {
           .catch((error) => {
             console.log(error)
             resultContainer
-              .clear()
+              .empty()
               .append($('<p>').append($('<b>').text('Failed!')))
             reset()
           })

@@ -140,7 +140,7 @@ export default {
               const results = []
               values = values.filter((line) => line)
               if (values.length < 1) {
-                $('#result').clear.append('<b>Not found</b>')
+                $('#result').clear().append('<b>Not found</b>')
                 reset()
               } else {
                 values.forEach(function (line) {
@@ -221,9 +221,9 @@ export default {
           })
           .catch((error) => {
             console.log(error)
-            resultContainer.clear.append(
-              $('<p>').append($('<b>').text('Failed!'))
-            )
+            resultContainer
+              .clear()
+              .append($('<p>').append($('<b>').text('Failed!')))
             reset()
           })
       }

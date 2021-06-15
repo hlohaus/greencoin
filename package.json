@@ -28,7 +28,7 @@
     "jquery": "^3.6.0",
     "jquery-datetimepicker": "^2.5.21",
     "jquery-serializejson": "^3.2.1",
-    "nuxt": "^2.2.0",
+    "nuxt": "^2.15.7",
     "nuxt-fontawesome": "^0.4.0"
   },
   "devDependencies": {

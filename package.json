@@ -24,7 +24,7 @@
   "dependencies": {
     "bootstrap": "^5.0.0",
     "bootstrap-vue": "^2.21.2",
-    "core-js": "^3.9.1",
+    "core-js": "^3.22.8",
     "jquery": "^3.6.0",
     "jquery-datetimepicker": "^2.5.21",
     "jquery-serializejson": "^3.2.1",
